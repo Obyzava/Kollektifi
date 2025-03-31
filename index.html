@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📜 Правила коллектива</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #7289DA;
+            --primary-hover: #8fa3e6;
+            --secondary: #424549;
+            --dark: #282B30;
+            --darker: #1e2124;
+            --light: #D9D9D9;
+            --danger: #ED4245;
+            --warning: #FEE75C;
+            --success: #3BA55C;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: linear-gradient(-45deg, var(--darker), var(--dark), #36393e, var(--secondary));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: rgba(114, 137, 218, 0.2);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(114, 137, 218, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: linear-gradient(to right, #fff, var(--primary-hover));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+            margin: 10px 0;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+        
+        .rule-section {
+            background-color: rgba(66, 69, 73, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .rule-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .rule-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .rule-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .rule-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .rule-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            vertical-align: middle;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .rule-title {
+            font-weight: bold;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--primary);
+            display: inline-block;
+            vertical-align: middle;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .rule-desc {
+            margin-top: 10px;
+            padding-left: 45px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            opacity: 0.9;
+        }
+        
+        .note {
+            background-color: rgba(114, 137, 218, 0.2);
+            border-left: 4px solid var(--primary);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .note:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .note.warning {
+            background-color: rgba(254, 231, 92, 0.15);
+            border-left-color: var(--warning);
+        }
+        
+        .note.danger {
+            background-color: rgba(237, 66, 69, 0.15);
+            border-left-color: var(--danger);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #999;
+            font-size: 0.9em;
+            width: 100%;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: none;
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        
+        a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .chat-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin: 15px 0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(114, 137, 218, 0.4);
+            text-align: center;
+            animation: pulse 2s infinite;
+            border: none;
+            cursor: pointer;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
+        
+        .chat-link:hover {
+            background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(114, 137, 218, 0.6);
+            text-decoration: none;
+        }
+        
+        .owner-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .rule-section {
+                padding: 15px;
+            }
+            
+            .rule-icon {
+                font-size: 1.5em;
+                margin-right: 10px;
+            }
+            
+            .rule-desc {
+                padding-left: 35px;
+            }
+            
+            .chat-link {
+                padding: 12px 25px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .rule-icon {
+                display: block;
+                margin: 0 auto 10px;
+                text-align: center;
+            }
+            
+            .rule-title {
+                display: block;
+                text-align: center;
+            }
+            
+            .rule-desc {
+                padding-left: 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container animate__animated animate__fadeIn">
+        <header class="animate__animated animate__fadeInDown">
+            <h1>📜 Правила коллектива</h1>
+            <p class="subtitle">Правила чата созданы для всех, каждый нарушитель будет караться наказанием</p>
+            <p><em>Незнание правил не освобождает от ответственности</em></p>
+        </header>
+
+        <div class="note danger animate__animated animate__fadeIn animate__delay-1s">
+            ‼️ Младший админ и выше в праве сами решать какое наказание будет лучше и справедливее.<br>
+            Учтите что за какое-то нарушение могут как устно предупредить, так и сразу выдать наказание.
+        </div>
+
+        <div class="rule-section animate__animated animate__fadeInLeft animate__delay-1s">
+            <div class="rule-item">
+                <span class="rule-icon">🤬</span>
+                <span class="rule-title">Маты в меру</span>
+                <div class="rule-desc">
+                    Не перегибайте с выражениями; любые оскорбления в сторону участников или админов, даже шуточные.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🔗</span>
+                <span class="rule-title">Спам</span>
+                <div class="rule-desc">
+                    Любые ссылки ТГ чатов/каналов или ботов; Вредоносные ссылки (тик ток и другие); Реферальные ссылки (ссылки для личной выгоды). Чтобы выложить вашу ссылку — попросите это сделать владельца чата.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🤪</span>
+                <span class="rule-title">Флуд</span>
+                <div class="rule-desc">
+                    Флуд бессмысленными сообщениями (плдаопбда, жпбплда и др); флуд стикерами (3+ от каждого участника); флуд командами ботов (частые вызовы определенных команд).
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🪜</span>
+                <span class="rule-title">Лесенка из сообщений (5+)</span>
+                <div class="rule-desc">
+                    Набивание статы.
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-section animate__animated animate__fadeInRight animate__delay-2s">
+            <div class="rule-item">
+                <span class="rule-icon">🗣️</span>
+                <span class="rule-title">Провокация</span>
+                <div class="rule-desc">
+                    Брать на слабо, издевательство над человеком под агрессией или мутом.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🤖</span>
+                <span class="rule-title">Юзер боты</span>
+                <div class="rule-desc">
+                    Любые юзер боты запрещены.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🚩</span>
+                <span class="rule-title">Политика</span>
+                <div class="rule-desc">
+                    Любое обсуждение политики или около политических тем. Пропаганда чего-либо: винтиляторы, числа.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🔞</span>
+                <span class="rule-title">18+ контент</span>
+                <div class="rule-desc">
+                    Запрещен любой контент 18+: стикеры, гифки, фразы слишком пошлого характера.
+                </div>
+            </div>
+        </div>
+
+        <div class="rule-section animate__animated animate__fadeInLeft animate__delay-3s">
+            <div class="rule-item">
+                <span class="rule-icon">📣</span>
+                <span class="rule-title">Слив личной информации (СЛД)</span>
+                <div class="rule-desc">
+                    Той информации, которую человек скрывает.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🚪</span>
+                <span class="rule-title">Обходы</span>
+                <div class="rule-desc">
+                    Обход ТГ возможностей (слежение за логами чата), обход наказаний с помощью твинков.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">🎭</span>
+                <span class="rule-title">Дезинформация</span>
+                <div class="rule-desc">
+                    Ложная информация, введение в заблуждение (ВВЗ), выдача себя за модера/админа/владельца (аватарка и ник).
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <span class="rule-icon">💩</span>
+                <span class="rule-title">Срач</span>
+                <div class="rule-desc">
+                    Любые ссоры, выходящие за обычные рамки. Если хотите продолжить срач — нужно это делать в специальном для этого чате.
+                </div>
+            </div>
+        </div>
+
+        <div class="note warning animate__animated animate__fadeIn animate__delay-4s">
+            ‼️ Текст кликабелен, если хотите попасть в чат просто нажмите на него ниже.<br>
+            ‼️ Правила всегда могут быть изменены.
+        </div>
+
+        <center class="animate__animated animate__fadeInUp animate__delay-4s">
+            <a href="https://t.me/Kollektifi" class="chat-link">Присоединиться к чату</a><br>
+            <a href="https://t.me/FiliHoki" class="owner-link">Связаться с владельцем @FiliHoki</a>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon">📢</a>
+                <a href="#" class="social-icon">💬</a>
+                <a href="#" class="social-icon">🔗</a>
+            </div>
+        </center>
+
+        <footer class="animate__animated animate__fadeIn animate__delay-5s">
+            © 2023 Правила коллектива. Все права защищены.
+        </footer>
+    </div>
+
+    <script>
+        // Добавляем анимацию при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.rule-section, .note');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Плавная прокрутка для всех ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
